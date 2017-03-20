@@ -1461,8 +1461,8 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
                 if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:timeZone:duration:)]) {
                     [self.delegate attributedLabel:self didSelectLinkWithDate:result.date timeZone:result.timeZone duration:result.duration];
                     return;
-                } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date];
+                } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:duration:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date duration:result.duration];
                     return;
                 }
                 break;

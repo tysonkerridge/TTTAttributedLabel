@@ -471,13 +471,15 @@ didSelectLinkWithAddress:(NSDictionary *)addressComponents;
 didSelectLinkWithPhoneNumber:(NSString *)phoneNumber;
 
 /**
- Tells the delegate that the user did select a link to a date.
+ Tells the delegate that the user did select a link to a date with a possible duration.
  
  @param label The label whose link was selected.
  @param date The datefor the selected link.
+ @param duration The duration, in sections from the date for the selected link.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
-  didSelectLinkWithDate:(NSDate *)date;
+  didSelectLinkWithDate:(NSDate *)date
+               duration:(NSTimeInterval)duration;
 
 /**
  Tells the delegate that the user did select a link to a date with a time zone and duration.
