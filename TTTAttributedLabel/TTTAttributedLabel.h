@@ -448,38 +448,46 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
  
  @param label The label whose link was selected.
  @param url The URL for the selected link.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
-   didSelectLinkWithURL:(NSURL *)url;
+   didSelectLinkWithURL:(NSURL *)url
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to an address.
  
  @param label The label whose link was selected.
  @param addressComponents The components of the address for the selected link.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
-didSelectLinkWithAddress:(NSDictionary *)addressComponents;
+didSelectLinkWithAddress:(NSDictionary *)addressComponents
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to a phone number.
  
  @param label The label whose link was selected.
  @param phoneNumber The phone number for the selected link.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
-didSelectLinkWithPhoneNumber:(NSString *)phoneNumber;
+didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to a date with a possible duration.
  
  @param label The label whose link was selected.
- @param date The datefor the selected link.
- @param duration The duration, in sections from the date for the selected link.
+ @param date The date for the selected link.
+ @param duration The duration, in seconds from the date for the link.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
   didSelectLinkWithDate:(NSDate *)date
-               duration:(NSTimeInterval)duration;
+               duration:(NSTimeInterval)duration
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to a date with a time zone and duration.
@@ -487,26 +495,30 @@ didSelectLinkWithPhoneNumber:(NSString *)phoneNumber;
  @param label The label whose link was selected.
  @param date The date for the selected link.
  @param timeZone The time zone of the date for the selected link.
- @param duration The duration, in seconds from the date for the selected link.
+ @param duration The duration, in seconds from the date for the link.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
   didSelectLinkWithDate:(NSDate *)date
                timeZone:(NSTimeZone *)timeZone
-               duration:(NSTimeInterval)duration;
+               duration:(NSTimeInterval)duration
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to transit information
 
  @param label The label whose link was selected.
  @param components A dictionary containing the transit components. The currently supported keys are `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
+ @param result The text checking result the selected link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
-didSelectLinkWithTransitInformation:(NSDictionary *)components;
+didSelectLinkWithTransitInformation:(NSDictionary *)components
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user did select a link to a text checking result.
  
- @discussion This method is called if no other delegate method was called, which can occur by either now implementing the method in `TTTAttributedLabelDelegate` corresponding to a particular link, or the link was added by passing an instance of a custom `NSTextCheckingResult` subclass into `-addLinkWithTextCheckingResult:`.
+ @discussion This method is called if no other delegate method was called, which can occur by either not implementing the method in `TTTAttributedLabelDelegate` corresponding to a particular link, or the link was added by passing an instance of a custom `NSTextCheckingResult` subclass into `-addLinkWithTextCheckingResult:`.
  
  @param label The label whose link was selected.
  @param result The custom text checking result.
@@ -529,10 +541,12 @@ didSelectLinkWithTextCheckingResult:(NSTextCheckingResult *)result;
  @param label The label whose link was long pressed.
  @param url The URL for the link.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithURL:(NSURL *)url
-                atPoint:(CGPoint)point;
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user long-pressed a link to an address.
@@ -540,10 +554,12 @@ didLongPressLinkWithURL:(NSURL *)url
  @param label The label whose link was long pressed.
  @param addressComponents The components of the address for the link.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithAddress:(NSDictionary *)addressComponents
-                atPoint:(CGPoint)point;
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user long-pressed a link to a phone number.
@@ -551,10 +567,12 @@ didLongPressLinkWithAddress:(NSDictionary *)addressComponents
  @param label The label whose link was long pressed.
  @param phoneNumber The phone number for the link.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithPhoneNumber:(NSString *)phoneNumber
-                atPoint:(CGPoint)point;
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 
 /**
@@ -562,11 +580,15 @@ didLongPressLinkWithPhoneNumber:(NSString *)phoneNumber
  
  @param label The label whose link was long pressed.
  @param date The date for the selected link.
+ @param duration The duration, in seconds from the date for the link.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithDate:(NSDate *)date
-                atPoint:(CGPoint)point;
+               duration:(NSTimeInterval)duration
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 
 /**
@@ -577,12 +599,14 @@ didLongPressLinkWithDate:(NSDate *)date
  @param timeZone The time zone of the date for the link.
  @param duration The duration, in seconds from the date for the link.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithDate:(NSDate *)date
                timeZone:(NSTimeZone *)timeZone
                duration:(NSTimeInterval)duration
-                atPoint:(CGPoint)point;
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 
 /**
@@ -591,10 +615,12 @@ didLongPressLinkWithDate:(NSDate *)date
  @param label The label whose link was long pressed.
  @param components A dictionary containing the transit components. The currently supported keys are `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
  @param point the point pressed, in the label's coordinate space
+ @param result The text checking result the long pressed link was created from.
  */
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithTransitInformation:(NSDictionary *)components
-                atPoint:(CGPoint)point;
+                atPoint:(CGPoint)point
+ fromTextCheckingResult:(NSTextCheckingResult *)result;
 
 /**
  Tells the delegate that the user long-pressed a link to a text checking result.

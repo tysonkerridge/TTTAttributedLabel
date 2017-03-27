@@ -1440,35 +1440,35 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
 
         switch (result.resultType) {
             case NSTextCheckingTypeLink:
-                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithURL:result.URL];
+                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithURL:result.URL fromTextCheckingResult:result];
                     return;
                 }
                 break;
             case NSTextCheckingTypeAddress:
-                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithAddress:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithAddress:result.addressComponents];
+                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithAddress:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithAddress:result.addressComponents fromTextCheckingResult:result];
                     return;
                 }
                 break;
             case NSTextCheckingTypePhoneNumber:
-                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithPhoneNumber:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithPhoneNumber:result.phoneNumber];
+                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithPhoneNumber:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithPhoneNumber:result.phoneNumber fromTextCheckingResult:result];
                     return;
                 }
                 break;
             case NSTextCheckingTypeDate:
-                if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:timeZone:duration:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date timeZone:result.timeZone duration:result.duration];
+                if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:timeZone:duration:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date timeZone:result.timeZone duration:result.duration fromTextCheckingResult:result];
                     return;
-                } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:duration:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date duration:result.duration];
+                } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithDate:duration:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithDate:result.date duration:result.duration fromTextCheckingResult:result];
                     return;
                 }
                 break;
             case NSTextCheckingTypeTransitInformation:
-                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
-                    [self.delegate attributedLabel:self didSelectLinkWithTransitInformation:result.components];
+                if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:fromTextCheckingResult:)]) {
+                    [self.delegate attributedLabel:self didSelectLinkWithTransitInformation:result.components fromTextCheckingResult:result];
                     return;
                 }
             default:
@@ -1522,35 +1522,35 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
                 
                 switch (result.resultType) {
                     case NSTextCheckingTypeLink:
-                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithURL:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithURL:result.URL atPoint:touchPoint];
+                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithURL:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithURL:result.URL atPoint:touchPoint fromTextCheckingResult:result];
                             return;
                         }
                         break;
                     case NSTextCheckingTypeAddress:
-                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithAddress:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithAddress:result.addressComponents atPoint:touchPoint];
+                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithAddress:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithAddress:result.addressComponents atPoint:touchPoint fromTextCheckingResult:result];
                             return;
                         }
                         break;
                     case NSTextCheckingTypePhoneNumber:
-                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithPhoneNumber:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithPhoneNumber:result.phoneNumber atPoint:touchPoint];
+                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithPhoneNumber:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithPhoneNumber:result.phoneNumber atPoint:touchPoint fromTextCheckingResult:result];
                             return;
                         }
                         break;
                     case NSTextCheckingTypeDate:
-                        if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithDate:timeZone:duration:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithDate:result.date timeZone:result.timeZone duration:result.duration atPoint:touchPoint];
+                        if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithDate:timeZone:duration:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithDate:result.date timeZone:result.timeZone duration:result.duration atPoint:touchPoint fromTextCheckingResult:result];
                             return;
-                        } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithDate:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithDate:result.date atPoint:touchPoint];
+                        } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithDate:duration:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithDate:result.date duration:result.duration atPoint:touchPoint fromTextCheckingResult:result];
                             return;
                         }
                         break;
                     case NSTextCheckingTypeTransitInformation:
-                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithTransitInformation:atPoint:)]) {
-                            [self.delegate attributedLabel:self didLongPressLinkWithTransitInformation:result.components atPoint:touchPoint];
+                        if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithTransitInformation:atPoint:fromTextCheckingResult:)]) {
+                            [self.delegate attributedLabel:self didLongPressLinkWithTransitInformation:result.components atPoint:touchPoint fromTextCheckingResult:result];
                             return;
                         }
                     default:
